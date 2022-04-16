@@ -29,10 +29,17 @@ window.addEventListener('keyup', (e) => {
   if (e.key === 'Control') {
     e.preventDefault();
     mainLinks.forEach((link) => {
-      link === mainLinks[currentLink]
-        ? (link.style.backgroundColor = 'green')
-        : (link.style.backgroundColor = 'white');
+      if (link === mainLinks[currentLink]) {
+        link.classList.add('selected');
+        link.style.backgroundColor = 'green';
+      } else {
+        link.style.backgroundColor = 'white';
+      }
     });
     currentLink++;
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    // The link at the currentLink minus 1 of the array mainLinks is clicked when Enter key is lifted. minus 1 is needed since the currentLink is incremented by 1 at the end when the Control key is lifted.
+    mainLinks[currentLink - 1].click();
   }
 });
