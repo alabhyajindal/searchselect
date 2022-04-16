@@ -26,14 +26,15 @@ for (let rLink of resultsLinks) {
 let currentLink = 0;
 // Event listener to listen for the keyup event of the Ctrl key
 window.addEventListener('keyup', (e) => {
+  if (currentLink > mainLinks.length - 1) currentLink = 0;
   if (e.key === 'Control') {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
         link.classList.add('selected');
-        link.style.backgroundColor = 'green';
+        link.style.textDecoration = 'underline';
       } else {
-        link.style.backgroundColor = 'white';
+        link.style.textDecoration = 'none';
       }
     });
     currentLink++;
