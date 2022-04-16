@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+  "name": "Search Select",
+  "version": "0.0.1",
+
+  "description": "Select and open search engine results quickly using shortcuts.",
+
+  "icons": {
+    "48": "icons/ss-48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search*"],
+      "js": ["searchSelect.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "searchselect@mozilla.com"
+    }
+  }
+}
