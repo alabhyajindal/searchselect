@@ -31,8 +31,13 @@ window.addEventListener('keyup', (e) => {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
-        link.classList.add('selected');
+        // link.classList.add('selected');
         link.style.textDecoration = 'underline';
+        link.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        });
       } else {
         link.style.textDecoration = 'none';
       }
