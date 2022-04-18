@@ -26,12 +26,17 @@ for (let rLink of resultsLinks) {
 let currentLink = 0;
 // Event listener to listen for the keyup event of the Ctrl key
 window.addEventListener('keyup', (e) => {
+  // Circles back to the first link the user reaches the last link on the search page
   if (currentLink > mainLinks.length - 1) currentLink = 0;
-  if (e.key === 'Control') {
+  if (e.key == '/') {
+    mainLinks[currentLink - 1].style.textDecoration = 'none';
+    currentLink = 0;
+  }
+  // First part of the condition ensures that the user is not focusing on something specific like tht search input
+  if (document.activeElement.localName === 'body' && e.key === 'Control') {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
-        // link.classList.add('selected');
         link.style.textDecoration = 'underline';
         link.scrollIntoView({
           behavior: 'smooth',
