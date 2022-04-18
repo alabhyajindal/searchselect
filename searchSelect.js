@@ -24,7 +24,7 @@ if (knowledgePanel) {
 let mainLinks = [];
 
 // Removing the askBoxLinks from the resultsLinks
-if (askBoxLinks.length > 0) {
+if (askBoxLinks) {
   for (let rLink of resultsLinks) {
     let count = 0;
     for (let aLink of askBoxLinks) {
@@ -41,13 +41,15 @@ if (askBoxLinks.length > 0) {
 }
 
 // Removing a link from the mainLinks array if the link is found in the knowledgePanelSection as well
-let temp = [];
-for (let link of mainLinks) {
-  if (!knowledgePanelLinks.includes(link)) {
-    temp.push(link);
+if (knowledgePanelLinks) {
+  let temp = [];
+  for (let link of mainLinks) {
+    if (!knowledgePanelLinks.includes(link)) {
+      temp.push(link);
+    }
   }
+  mainLinks = [...temp];
 }
-mainLinks = [...temp];
 
 // Initializing a variable to help cycle between the mainLinks
 let currentLink = 0;
