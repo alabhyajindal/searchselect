@@ -49,3 +49,9 @@ window.addEventListener('keyup', (e) => {
     mainLinks[currentLink - 1].click();
   }
 });
+
+// Removing the focus from the link when the user clicks
+window.addEventListener('click', () => {
+  mainLinks[currentLink - 1].style.textDecoration = 'none';
+  currentLink = 0;
+});
