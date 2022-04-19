@@ -19,7 +19,7 @@ let knowledgePanelLinks;
 // Array of links in the Knowledge Panel section
 if (knowledgePanel) {
   knowledgePanelLinks = Array.from(
-    knowledgePanel.querySelectorAll('.LC20lb.MBeuO.DKV0Md')
+    knowledgePanel.querySelectorAll('.LC20lb.MBeuO')
   );
 }
 
@@ -56,12 +56,14 @@ if (knowledgePanelLinks) {
 
 // Function to scroll to the top of the page
 const scrollToTop = function () {
-  mainLinks[0].scrollIntoView({
+  window.scroll({
+    top: 0,
+    left: 0,
     behavior: 'smooth',
-    block: 'center',
-    inline: 'center',
   });
 };
+
+// If the Tab key was pressed before then the code below should not execute
 
 // Initializing a variable to help cycle between the mainLinks
 let currentLink = 0;
@@ -75,8 +77,7 @@ window.addEventListener('keyup', (e) => {
     currentLink = 0;
   }
   // First part of the condition ensures that the user is not focusing on something specific like tht search input
-  // We only want the below code to run when Control is the *only* key pressed on the keyboard. If the Control key is pressed in combination with some other key like Control + A, then we don't want the below code to execute
-  if (document.activeElement.localName === 'body' && e.key === 'Control') {
+  if (document.activeElement.localName === 'body' && e.key === 's') {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
@@ -106,7 +107,7 @@ window.addEventListener('keydown', (e) => {
     } else if (e.key === 'Enter') {
       e.preventDefault();
       mainLinks[currentLink - 1].click();
-    } else if (e.key === 'Escape') {
+    } else if (e.key === 'q') {
       e.preventDefault();
       mainLinks[currentLink - 1].style.textDecoration = 'none';
       currentLink = 0;
