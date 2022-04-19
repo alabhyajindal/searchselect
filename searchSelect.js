@@ -91,21 +91,24 @@ window.addEventListener('keyup', (e) => {
   }
 });
 
+// Selecting the link to perform actions on
+let linkToAction;
 window.addEventListener('keydown', (e) => {
   // Ensures page's functionality works as expected in the Search bar
+  linkToAction = mainLinks[currentLink - 1];
   if (document.activeElement.localName === 'body') {
     if (e.ctrlKey && e.key == 'Enter') {
       e.preventDefault();
-      console.log(mainLinks[currentLink - 1]);
+      window.open(linkToAction.parentNode.href);
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      mainLinks[currentLink - 1].click();
+      linkToAction.click();
     }
   }
 });
 
 // Removing the focus from the link when the user clicks
 window.addEventListener('click', () => {
-  mainLinks[currentLink - 1].style.textDecoration = 'none';
+  linkToAction.style.textDecoration = 'none';
   currentLink = 0;
 });
