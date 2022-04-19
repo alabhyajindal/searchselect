@@ -1,5 +1,8 @@
-// Array of all the search results shown by Google
-// First group of class below targets on all main search resuts. The second targets Twitter profile links. The third group targets ad links.
+// Removing the message shown by Google when a user presses a key other than /
+let tipMessage = document.querySelector('.SaJ9Qe');
+tipMessage.remove();
+
+// Array of all the search results shown by Google. First group of class below targets on all main search resuts. The second targets Twitter profile links. The third group targets ad links.
 let resultsLinks = Array.from(
   document.querySelectorAll(
     '.LC20lb.MBeuO, .haz7je, .CCgQ5.vCa9Yd.QfkTvb.MUxGbd.v0nnCb'
@@ -63,8 +66,6 @@ const scrollToTop = function () {
   });
 };
 
-// If the Tab key was pressed before then the code below should not execute
-
 // Initializing a variable to help cycle between the mainLinks
 let currentLink = 0;
 // Event listener to listen for the keyup event of the Control key
@@ -103,7 +104,9 @@ window.addEventListener('keydown', (e) => {
   if (document.activeElement.localName === 'body') {
     if (e.ctrlKey && e.key == 'Enter') {
       e.preventDefault();
-      window.open(mainLinks[currentLink - 1].parentNode.href);
+      window
+        .open(mainLinks[currentLink - 1].parentNode.href, '_blank_')
+        .focus();
     } else if (e.key === 'Enter') {
       e.preventDefault();
       mainLinks[currentLink - 1].click();
