@@ -60,7 +60,7 @@ if (knowledgePanelLinks) {
   mainLinks = [...temp];
 }
 
-// Function to scroll to the top of the page
+// Function to scroll to the top o  f the page
 const scrollToTop = function () {
   window.scroll({
     top: 0,
@@ -93,13 +93,7 @@ window.addEventListener('keyup', (e) => {
         link.style.textDecoration = 'none';
       }
     });
-    console.log(
-      `BEFORE: currentLink: ${currentLink}, Length: ${mainLinks.length}`
-    );
     currentLink++;
-    console.log(
-      `AFTER: currentLink: ${currentLink}, Length: ${mainLinks.length}`
-    );
   }
 
   if (document.activeElement.localName === 'body' && e.key === 'w') {
@@ -120,13 +114,7 @@ window.addEventListener('keyup', (e) => {
         link.style.textDecoration = 'none';
       }
     });
-    console.log(
-      `BEFORE: currentLink: ${currentLink}, Length: ${mainLinks.length}`
-    );
     currentLink--;
-    console.log(
-      `AFTER: currentLink: ${currentLink}, Length: ${mainLinks.length}`
-    );
   }
 });
 

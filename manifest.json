@@ -27,8 +27,9 @@
         "https://www.google.co.kr/search*",
         "https://www.google.com.hk/search*"
       ],
-      "js": ["searchSelect.js"]
-    }
+      "js": ["google.js"]
+    },
+    { "matches": ["https://duckduckgo.com/?*"], "js": ["ddg.js"] }
   ],
   "browser_specific_settings": {
     "gecko": {
