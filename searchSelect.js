@@ -1,7 +1,9 @@
 // Array of all the search results shown by Google
-// First group of class below is used on all main search resuts. The second one is used to show Twitter profile links
+// First group of class below targets on all main search resuts. The second targets Twitter profile links. The third group targets ad links.
 let resultsLinks = Array.from(
-  document.querySelectorAll('.LC20lb.MBeuO.DKV0Md, .haz7je')
+  document.querySelectorAll(
+    '.LC20lb.MBeuO.DKV0Md, .haz7je, .CCgQ5.vCa9Yd.QfkTvb.MUxGbd.v0nnCb'
+  )
 );
 // Links which are shown by Google in the "People also ask" section
 let askBox = document.querySelector('.Wt5Tfe');
@@ -64,7 +66,12 @@ window.addEventListener('keyup', (e) => {
     currentLink = 0;
   }
   // First part of the condition ensures that the user is not focusing on something specific like tht search input
-  if (document.activeElement.localName === 'body' && e.key === 'Control') {
+  // We only want the below code to run when Control is the *only* key pressed on the keyboard. If the Control key is pressed in combination with some other key like Control + A, then we don't want the below code to execute
+  if (
+    document.activeElement.localName === 'body' &&
+    e.key === 'Control' &&
+    e.key != 'Enter'
+  ) {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
@@ -81,10 +88,19 @@ window.addEventListener('keyup', (e) => {
       }
     });
     currentLink++;
-  } else if (e.key === 'Enter') {
-    e.preventDefault();
-    // The link at the currentLink minus 1 of the array mainLinks is clicked when Enter key is lifted. minus 1 is needed since the currentLink is incremented by 1 at the end when the Control key is lifted.
-    mainLinks[currentLink - 1].click();
+  }
+});
+
+window.addEventListener('keydown', (e) => {
+  // Ensures page's functionality works as expected in the Search bar
+  if (document.activeElement.localName === 'body') {
+    if (e.ctrlKey && e.key == 'Enter') {
+      e.preventDefault();
+      console.log(mainLinks[currentLink - 1]);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      mainLinks[currentLink - 1].click();
+    }
   }
 });
 
