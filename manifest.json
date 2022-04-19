@@ -11,7 +11,22 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/search*"],
+      "matches": [
+        "https://www.google.com/search*",
+        "https://www.google.com.br/search*",
+        "https://www.google.co.uk/search*",
+        "https://www.google.co.jp/search*",
+        "https://www.google.co.in/search*",
+        "https://www.google.it/search*",
+        "https://www.google.es/search*",
+        "https://www.google.fr/search*",
+        "https://www.google.de/search*",
+        "https://www.google.com.au/search*",
+        "https://www.google.com.sg/search*",
+        "https://www.google.ca/search*",
+        "https://www.google.co.kr/search*",
+        "https://www.google.com.hk/search*"
+      ],
       "js": ["searchSelect.js"]
     }
   ],
