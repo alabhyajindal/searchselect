@@ -54,6 +54,15 @@ if (knowledgePanelLinks) {
   mainLinks = [...temp];
 }
 
+// Function to scroll to the top of the page
+const scrollToTop = function () {
+  mainLinks[0].scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+    inline: 'center',
+  });
+};
+
 // Initializing a variable to help cycle between the mainLinks
 let currentLink = 0;
 // Event listener to listen for the keyup event of the Control key
@@ -67,11 +76,7 @@ window.addEventListener('keyup', (e) => {
   }
   // First part of the condition ensures that the user is not focusing on something specific like tht search input
   // We only want the below code to run when Control is the *only* key pressed on the keyboard. If the Control key is pressed in combination with some other key like Control + A, then we don't want the below code to execute
-  if (
-    document.activeElement.localName === 'body' &&
-    e.key === 'Control' &&
-    e.key != 'Enter'
-  ) {
+  if (document.activeElement.localName === 'body' && e.key === 'Control') {
     e.preventDefault();
     mainLinks.forEach((link) => {
       if (link === mainLinks[currentLink]) {
@@ -92,23 +97,26 @@ window.addEventListener('keyup', (e) => {
 });
 
 // Selecting the link to perform actions on
-let linkToAction;
 window.addEventListener('keydown', (e) => {
   // Ensures page's functionality works as expected in the Search bar
-  linkToAction = mainLinks[currentLink - 1];
   if (document.activeElement.localName === 'body') {
     if (e.ctrlKey && e.key == 'Enter') {
       e.preventDefault();
-      window.open(linkToAction.parentNode.href);
+      window.open(mainLinks[currentLink - 1].parentNode.href);
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      linkToAction.click();
+      mainLinks[currentLink - 1].click();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      mainLinks[currentLink - 1].style.textDecoration = 'none';
+      currentLink = 0;
+      scrollToTop();
     }
   }
 });
 
 // Removing the focus from the link when the user clicks
 window.addEventListener('click', () => {
-  linkToAction.style.textDecoration = 'none';
+  mainLinks[currentLink - 1].style.textDecoration = 'none';
   currentLink = 0;
 });
