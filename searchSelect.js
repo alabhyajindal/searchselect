@@ -1,6 +1,9 @@
+// Selecting the search bar
+// let searchBar = document.querySelector('.gLFyf.gsfi');
+
 // Removing the message shown by Google when a user presses a key other than /
 let tipMessage = document.querySelector('.SaJ9Qe');
-tipMessage.remove();
+tipMessage.style.overflow = 'hidden';
 
 // Array of all the search results shown by Google. First group of class below targets on all main search resuts. The second targets Twitter profile links. The third group targets ad links.
 let resultsLinks = Array.from(
@@ -73,11 +76,7 @@ window.addEventListener('keyup', (e) => {
   // Circles back to the first link the user reaches the last link on the search page
   if (currentLink > mainLinks.length - 1) currentLink = 0;
   // Removing focus from the selected link when the user goes back to the search bar
-  if (e.key == '/') {
-    mainLinks[currentLink - 1].style.textDecoration = 'none';
-    currentLink = 0;
-  }
-  // First part of the condition ensures that the user is not focusing on something specific like tht search input
+  // First part of the condition ensures that the user is not focusing on something specific like the search input
   if (document.activeElement.localName === 'body' && e.key === 's') {
     e.preventDefault();
     mainLinks.forEach((link) => {
@@ -90,6 +89,7 @@ window.addEventListener('keyup', (e) => {
           block: 'center',
           inline: 'center',
         });
+        console.log(currentLink);
       } else {
         link.style.textDecoration = 'none';
       }
@@ -102,11 +102,13 @@ window.addEventListener('keyup', (e) => {
 window.addEventListener('keydown', (e) => {
   // Ensures page's functionality works as expected in the Search bar
   if (document.activeElement.localName === 'body') {
+    if (e.key == '/') {
+      mainLinks[currentLink - 1].style.textDecoration = 'none';
+      currentLink = 0;
+    }
     if (e.ctrlKey && e.key == 'Enter') {
       e.preventDefault();
-      window
-        .open(mainLinks[currentLink - 1].parentNode.href, '_blank_')
-        .focus();
+      window.open(mainLinks[currentLink - 1].parentNode.href);
     } else if (e.key === 'Enter') {
       e.preventDefault();
       mainLinks[currentLink - 1].click();
