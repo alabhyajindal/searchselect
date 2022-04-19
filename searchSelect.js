@@ -2,7 +2,7 @@
 // First group of class below targets on all main search resuts. The second targets Twitter profile links. The third group targets ad links.
 let resultsLinks = Array.from(
   document.querySelectorAll(
-    '.LC20lb.MBeuO.DKV0Md, .haz7je, .CCgQ5.vCa9Yd.QfkTvb.MUxGbd.v0nnCb'
+    '.LC20lb.MBeuO, .haz7je, .CCgQ5.vCa9Yd.QfkTvb.MUxGbd.v0nnCb'
   )
 );
 // Links which are shown by Google in the "People also ask" section
