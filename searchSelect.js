@@ -4,7 +4,7 @@ let resultsLinks = Array.from(
   document.querySelectorAll('.LC20lb.MBeuO.DKV0Md, .haz7je')
 );
 // Links which are shown by Google in the "People also ask" section
-let askBox = document.querySelector('.ULSxyf');
+let askBox = document.querySelector('.Wt5Tfe');
 let askBoxLinks;
 // Array of links in the askBox section
 if (askBox) {
@@ -41,8 +41,6 @@ if (askBoxLinks) {
   mainLinks = [...resultsLinks];
 }
 
-console.log(mainLinks);
-
 // Removing a link from the mainLinks array if the link is found in the knowledgePanelSection as well
 if (knowledgePanelLinks) {
   let temp = [];
@@ -53,7 +51,6 @@ if (knowledgePanelLinks) {
   }
   mainLinks = [...temp];
 }
-console.log(mainLinks);
 
 // Initializing a variable to help cycle between the mainLinks
 let currentLink = 0;
