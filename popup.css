@@ -1,0 +1,17 @@
+body {
+  text-align: center;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+  background-color: aliceblue;
+  border: 1px solid lightblue;
+  color: #333;
+  cursor: pointer;
+
+  margin: 0.4rem 1rem;
+}
