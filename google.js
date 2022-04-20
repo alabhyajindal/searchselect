@@ -60,7 +60,7 @@ if (knowledgePanelLinks) {
   mainLinks = [...temp];
 }
 
-// Function to scroll to the top o  f the page
+// Function to scroll to the top of the page
 const scrollToTop = function () {
   window.scroll({
     top: 0,
