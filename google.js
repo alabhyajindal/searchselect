@@ -1,5 +1,6 @@
-// Selecting the search bar
-// let searchBar = document.querySelector('.gLFyf.gsfi');
+// Declaring the customizable shortcut keys
+let scrollDownKey = 's';
+let scrollUpKey = 'w';
 
 // Removing the message shown by Google when a user presses a key other than /
 let tipMessage = document.querySelector('.SaJ9Qe');
@@ -13,6 +14,7 @@ let resultsLinks = Array.from(
 );
 // Links which are shown by Google in the "People also ask" section
 let askBox = document.querySelector('.Wt5Tfe');
+
 let askBoxLinks;
 // Array of links in the askBox section
 if (askBox) {
@@ -75,7 +77,7 @@ let currentLinkIndex = 0;
 window.addEventListener('keyup', (e) => {
   // Removing focus from the selected link when the user goes back to the search bar
   // First part of the condition ensures that the user is not focusing on something specific like the search input
-  if (document.activeElement.localName === 'body' && e.key === 's') {
+  if (document.activeElement.localName === 'body' && e.key === scrollDownKey) {
     e.preventDefault();
     // Circles forward to the first link the user reaches past the last link on the search page
     if (currentLinkIndex === mainLinks.length) currentLinkIndex = 0;
@@ -96,7 +98,7 @@ window.addEventListener('keyup', (e) => {
     currentLinkIndex++;
   }
 
-  if (document.activeElement.localName === 'body' && e.key === 'w') {
+  if (document.activeElement.localName === 'body' && e.key === scrollUpKey) {
     e.preventDefault();
     // Circles back to the last link if the user reaches past the first link on the search page
     if (currentLinkIndex === 1) currentLinkIndex = mainLinks.length + 1;
