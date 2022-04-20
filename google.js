@@ -70,7 +70,7 @@ const scrollToTop = function () {
 };
 
 // Initializing a variable to help cycle between the mainLinks
-let currentLink = 0;
+let currentLinkIndex = 0;
 // Event listener to listen for the keyup event of the Control key
 window.addEventListener('keyup', (e) => {
   // Removing focus from the selected link when the user goes back to the search bar
@@ -78,9 +78,9 @@ window.addEventListener('keyup', (e) => {
   if (document.activeElement.localName === 'body' && e.key === 's') {
     e.preventDefault();
     // Circles forward to the first link the user reaches past the last link on the search page
-    if (currentLink === mainLinks.length) currentLink = 0;
+    if (currentLinkIndex === mainLinks.length) currentLinkIndex = 0;
     mainLinks.forEach((link) => {
-      if (link === mainLinks[currentLink]) {
+      if (link === mainLinks[currentLinkIndex]) {
         // Visual indication that the link is in focus
         link.style.textDecoration = 'underline';
         // Smooth scrolling the selected link to the center of the screen
@@ -93,15 +93,15 @@ window.addEventListener('keyup', (e) => {
         link.style.textDecoration = 'none';
       }
     });
-    currentLink++;
+    currentLinkIndex++;
   }
 
   if (document.activeElement.localName === 'body' && e.key === 'w') {
     e.preventDefault();
     // Circles back to the last link if the user reaches past the first link on the search page
-    if (currentLink === 1) currentLink = mainLinks.length + 1;
+    if (currentLinkIndex === 1) currentLinkIndex = mainLinks.length + 1;
     mainLinks.forEach((link) => {
-      if (link === mainLinks[currentLink - 2]) {
+      if (link === mainLinks[currentLinkIndex - 2]) {
         // Visual indication that the link is in focus
         link.style.textDecoration = 'underline';
         // Smooth scrolling the selected link to the center of the screen
@@ -114,7 +114,7 @@ window.addEventListener('keyup', (e) => {
         link.style.textDecoration = 'none';
       }
     });
-    currentLink--;
+    currentLinkIndex--;
   }
 });
 
@@ -122,28 +122,28 @@ window.addEventListener('keyup', (e) => {
 window.addEventListener('keydown', (e) => {
   if (e.key === 'q') {
     e.preventDefault();
-    mainLinks[currentLink - 1].style.textDecoration = 'none';
-    currentLink = 0;
+    mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+    currentLinkIndex = 0;
     scrollToTop();
   }
   // Ensures page's functionality works as expected in the Search bar
   if (document.activeElement.localName === 'body') {
     if (e.key == '/') {
-      mainLinks[currentLink - 1].style.textDecoration = 'none';
-      currentLink = 0;
+      mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+      currentLinkIndex = 0;
     }
     if (e.ctrlKey && e.key == 'Enter') {
       e.preventDefault();
-      window.open(mainLinks[currentLink - 1].parentNode.href);
+      window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      mainLinks[currentLink - 1].click();
+      mainLinks[currentLinkIndex - 1].click();
     }
   }
 });
 
 // Removing the focus from the link when the user clicks
 window.addEventListener('click', () => {
-  mainLinks[currentLink - 1].style.textDecoration = 'none';
-  currentLink = 0;
+  mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+  currentLinkIndex = 0;
 });
