@@ -77,3 +77,9 @@ restoreBtn.addEventListener('click', () => {
   updateScreen();
   displayMessage('Shortcuts reset to default.', 'green');
 });
+
+// Displaying the current shortcut keys on page render
+
+window.addEventListener('DOMContentLoaded', () => {
+  updateScreen();
+});
