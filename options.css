@@ -31,3 +31,7 @@ input[type='text'] {
   display: flex;
   gap: 0.5rem;
 }
+
+#message {
+  font-size: 1rem;
+}

@@ -1,14 +1,12 @@
 // All the validation happens on the options page. There are two click event listeners. One for save - which saves the data to chrome.storage and the other for restore - which restores the data in chrome.storage.
 
-let save = document.getElementById('save');
-let restore = document.getElementById('restore');
+let saveBtn = document.getElementById('save');
+let restoreBtn = document.getElementById('restore');
+let messageParagraph = document.getElementById('message');
 
-function displayData() {
-  chrome.storage.sync.get((data) => {
-    console.log(
-      `Down Key: ${data.down}\nUp Key: ${data.up}\nTop Key: ${data.top}`
-    );
-  });
+function displayMessage(message, color) {
+  messageParagraph.textContent = message;
+  messageParagraph.style.color = color;
 }
 
 function updateScreen() {
@@ -22,22 +20,54 @@ function updateScreen() {
   });
 }
 
-save.addEventListener('click', () => {
+function validateEntry(value) {
+  let valueCode = value.codePointAt(0);
+  if (
+    // Letters a - z
+    (valueCode >= 97 && valueCode <= 122) ||
+    // Numbers 0 - 9
+    (valueCode >= 48 && value <= 57)
+  ) {
+    return true;
+  } else {
+    displayMessage('Please enter valid values (0 - 9 or a - z).', 'red');
+    restoreBtn.click();
+    return false;
+  }
+}
+
+saveBtn.addEventListener('click', () => {
   let scrollDownKey = document.getElementById('down');
   let scrollUpKey = document.getElementById('up');
   let scrollTopKey = document.getElementById('top');
 
-  chrome.storage.sync.set({
-    down: scrollDownKey.value,
-    up: scrollUpKey.value,
-    top: scrollTopKey.value,
-  });
+  // Checking if all three shortcuts have unique values
+  if (
+    scrollDownKey.value === scrollUpKey.value ||
+    scrollDownKey.value === scrollTopKey.value ||
+    scrollUpKey.value === scrollTopKey.value
+  ) {
+    displayMessage('Each shortcut should be assigned a unique key.', 'red');
+    restoreBtn.click();
+    return;
+  }
+  if (
+    validateEntry(scrollDownKey.value) &&
+    validateEntry(scrollUpKey.value) &&
+    validateEntry(scrollTopKey.value)
+  ) {
+    chrome.storage.sync.set({
+      down: scrollDownKey.value,
+      up: scrollUpKey.value,
+      top: scrollTopKey.value,
+    });
 
-  updateScreen();
-  displayData();
+    updateScreen();
+    displayMessage('Shortcuts saved successfully.', 'green');
+  }
 });
 
-restore.addEventListener('click', () => {
+restoreBtn.addEventListener('click', () => {
   chrome.storage.sync.set({
     down: 's',
     up: 'w',
@@ -45,5 +75,4 @@ restore.addEventListener('click', () => {
   });
 
   updateScreen();
-  displayData();
 });
