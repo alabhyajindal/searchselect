@@ -148,10 +148,10 @@ window.addEventListener('keydown', (e) => {
         currentLinkIndex = 0;
       }
     }
-    if (e.ctrlKey && e.key == 'Enter') {
+    if (e.ctrlKey && e.key == 'Enter' && currentLinkIndex >= 1) {
       e.preventDefault();
       window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
-    } else if (e.key === 'Enter') {
+    } else if (e.key === 'Enter' && currentLinkIndex >= 1) {
       e.preventDefault();
       mainLinks[currentLinkIndex - 1].click();
     }
