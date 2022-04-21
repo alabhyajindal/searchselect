@@ -1,6 +1,8 @@
-// Declaring the customizable shortcut keys
+// Declaring the default shortcut keys
 let scrollDownKey = 's';
 let scrollUpKey = 'w';
+
+// Logic to overwrite default shortcut keys below
 
 // Removing the message shown by Google when a user presses a key other than /
 let tipMessage = document.querySelector('.SaJ9Qe');
@@ -122,30 +124,36 @@ window.addEventListener('keyup', (e) => {
 
 // Selecting the link to perform actions on
 window.addEventListener('keydown', (e) => {
-  if (e.key === 'q') {
-    e.preventDefault();
-    mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
-    currentLinkIndex = 0;
-    scrollToTop();
-  }
-  // Ensures page's functionality works as expected in the Search bar
   if (document.activeElement.localName === 'body') {
-    if (e.key == '/') {
-      mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
-      currentLinkIndex = 0;
+    if (e.key === 'q') {
+      e.preventDefault();
+      scrollToTop();
+      if (currentLinkIndex >= 1) {
+        mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+        currentLinkIndex = 0;
+      }
     }
-    if (e.ctrlKey && e.key == 'Enter') {
-      e.preventDefault();
-      window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      mainLinks[currentLinkIndex - 1].click();
+    // Ensures page's functionality works as expected in the Search bar
+    if (document.activeElement.localName === 'body') {
+      if (e.key == '/') {
+        mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+        currentLinkIndex = 0;
+      }
+      if (e.ctrlKey && e.key == 'Enter') {
+        e.preventDefault();
+        window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        mainLinks[currentLinkIndex - 1].click();
+      }
     }
   }
 });
 
 // Removing the focus from the link when the user clicks
 window.addEventListener('click', () => {
-  mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
-  currentLinkIndex = 0;
+  if (document.activeElement.localName === 'body' && currentLinkIndex >= 1) {
+    mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
+    currentLinkIndex = 0;
+  }
 });
