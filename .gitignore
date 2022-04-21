@@ -1,6 +1,7 @@
 # dependencies
 /node_modules
 /web-ext-artifacts
+/icons
 
 # extension files
 manifest.json

@@ -30,8 +30,8 @@ function validateEntry(value) {
   ) {
     return true;
   } else {
-    displayMessage('Please enter valid values (0 - 9 or a - z).', 'red');
     restoreBtn.click();
+    displayMessage('Please enter valid values (0 - 9 or a - z).', 'red');
     return false;
   }
 }
@@ -47,8 +47,8 @@ saveBtn.addEventListener('click', () => {
     scrollDownKey.value === scrollTopKey.value ||
     scrollUpKey.value === scrollTopKey.value
   ) {
-    displayMessage('Each shortcut should be assigned a unique key.', 'red');
     restoreBtn.click();
+    displayMessage('Each shortcut should be assigned a unique key.', 'red');
     return;
   }
   if (
@@ -75,4 +75,5 @@ restoreBtn.addEventListener('click', () => {
   });
 
   updateScreen();
+  displayMessage('Shortcuts reset to default.', 'green');
 });

@@ -3,7 +3,13 @@ let scrollDownKey = 's';
 let scrollUpKey = 'w';
 let scrollTopKey = 'q';
 
-// Logic to overwrite default shortcut keys below
+// Overwriting the default shortcut keys below
+
+chrome.storage.sync.get((data) => {
+  scrollDownKey = String(data.down);
+  scrollUpKey = String(data.up);
+  scrollTopKey = String(data.top);
+});
 
 // Removing the message shown by Google when a user presses a key other than /
 let tipMessage = document.querySelector('.SaJ9Qe');
