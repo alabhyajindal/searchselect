@@ -1,3 +1,31 @@
-input {
+.shortcuts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.select {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+label {
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: right;
+  display: inline-block;
+  width: 6rem;
+}
+
+input[type='text'] {
   text-align: center;
+  width: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.button-cont {
+  display: flex;
+  gap: 0.5rem;
 }

@@ -3,19 +3,31 @@
   <head>
     <title>SearchSelect &mdash; Options</title>
     <link rel="stylesheet" href="options.css" />
-    <script src="options.js"></script>
+    <link rel="stylesheet" href="button.css" />
   </head>
   <body>
     <h1>SearchSelect</h1>
 
-    <section id="customs">
-      <h3>Shortcuts</h3>
-      <label for="down">Scroll Down</label>
-      <input id="down" type="text" maxlength="1" value="s" />
+    <section class="shortcuts">
+      <div class="select">
+        <label for="down">Scroll Down</label>
+        <input id="down" type="text" maxlength="1" value="s" />
+      </div>
+      <div class="select">
+        <label for="up">Scroll Up</label>
+        <input id="up" type="text" maxlength="1" value="w" />
+      </div>
+      <div class="select">
+        <label for="top">Scroll to Top</label>
+        <input id="top" type="text" maxlength="1" value="q" />
+      </div>
     </section>
 
     <br />
-    <button id="save">Save</button>
-    <button id="restore">Restore Defaults</button>
+    <div class="button-cont">
+      <button id="save">Save</button>
+      <button id="restore">Restore Defaults</button>
+    </div>
+    <script src="options.js"></script>
   </body>
 </html>

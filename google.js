@@ -1,6 +1,7 @@
 // Declaring the default shortcut keys
 let scrollDownKey = 's';
 let scrollUpKey = 'w';
+let scrollTopKey = 'q';
 
 // Logic to overwrite default shortcut keys below
 
@@ -125,7 +126,7 @@ window.addEventListener('keyup', (e) => {
 // Selecting the link to perform actions on
 window.addEventListener('keydown', (e) => {
   if (document.activeElement.localName === 'body') {
-    if (e.key === 'q') {
+    if (e.key === scrollTopKey) {
       e.preventDefault();
       scrollToTop();
       if (currentLinkIndex >= 1) {
@@ -133,19 +134,20 @@ window.addEventListener('keydown', (e) => {
         currentLinkIndex = 0;
       }
     }
+
     // Ensures page's functionality works as expected in the Search bar
-    if (document.activeElement.localName === 'body') {
-      if (e.key == '/') {
+    if (e.key == '/') {
+      if (currentLinkIndex >= 1) {
         mainLinks[currentLinkIndex - 1].style.textDecoration = 'none';
         currentLinkIndex = 0;
       }
-      if (e.ctrlKey && e.key == 'Enter') {
-        e.preventDefault();
-        window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        mainLinks[currentLinkIndex - 1].click();
-      }
+    }
+    if (e.ctrlKey && e.key == 'Enter') {
+      e.preventDefault();
+      window.open(mainLinks[currentLinkIndex - 1].parentNode.href);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      mainLinks[currentLinkIndex - 1].click();
     }
   }
 });
