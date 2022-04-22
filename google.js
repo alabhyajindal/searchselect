@@ -1,9 +1,4 @@
-// Declaring the default shortcut keys
-let scrollDownKey = 's';
-let scrollUpKey = 'w';
-let scrollTopKey = 'q';
-
-// Overwriting the default shortcut keys below
+// Initializing the shortcut keys from chrome.storage
 
 chrome.storage.sync.get((data) => {
   scrollDownKey = String(data.down);
