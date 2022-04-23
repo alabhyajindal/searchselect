@@ -8,4 +8,10 @@ button {
   border: 1px solid lightblue;
   color: #333;
   cursor: pointer;
+
+  transition: all 250ms ease-out;
+}
+
+button:active {
+  transform: scale(0.8);
 }
