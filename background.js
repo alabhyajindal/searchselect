@@ -4,4 +4,10 @@ chrome.runtime.onInstalled.addListener(() => {
     up: 'w',
     top: 'q',
   });
+
+  let onboardingPage = chrome.runtime.getURL('onboarding.html');
+  chrome.tabs.create({
+    url: onboardingPage,
+    active: true,
+  });
 });
