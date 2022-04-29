@@ -75,9 +75,6 @@ const scrollToTop = function () {
   });
 };
 
-// Specifying the opacity of the links not in foucs
-let opacityLevel = 0.7;
-
 // Initializing a variable to help cycle between the mainLinks
 let currentLinkIndex = 0;
 // Event listener to listen for the keyup event of the Control key
@@ -92,7 +89,6 @@ window.addEventListener('keyup', (e) => {
       if (link === mainLinks[currentLinkIndex]) {
         // Visual indication that the link is in focus
         link.style.textDecoration = 'underline';
-        link.style.opacity = 1;
         // Smooth scrolling the selected link to the center of the screen
         link.scrollIntoView({
           behavior: 'smooth',
@@ -101,7 +97,6 @@ window.addEventListener('keyup', (e) => {
         });
       } else {
         link.style.textDecoration = 'none';
-        link.style.opacity = opacityLevel;
       }
     });
     currentLinkIndex++;
@@ -115,7 +110,6 @@ window.addEventListener('keyup', (e) => {
       if (link === mainLinks[currentLinkIndex - 2]) {
         // Visual indication that the link is in focus
         link.style.textDecoration = 'underline';
-        link.style.opacity = 1;
         // Smooth scrolling the selected link to the center of the screen
         link.scrollIntoView({
           behavior: 'smooth',
@@ -124,7 +118,6 @@ window.addEventListener('keyup', (e) => {
         });
       } else {
         link.style.textDecoration = 'none';
-        link.style.opacity = opacityLevel;
       }
     });
     currentLinkIndex--;
