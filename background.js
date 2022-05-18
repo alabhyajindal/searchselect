@@ -1,4 +1,4 @@
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener(({ reason }) => {
   chrome.storage.sync.set({
     down: 's',
     up: 'w',
@@ -6,8 +6,11 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 
   let onboardingPage = chrome.runtime.getURL('onboarding.html');
-  chrome.tabs.create({
-    url: onboardingPage,
-    active: true,
-  });
+
+  if (reason === 'install') {
+    chrome.tabs.create({
+      url: onboardingPage,
+      active: true,
+    });
+  }
 });
